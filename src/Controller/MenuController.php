@@ -104,7 +104,7 @@ class MenuController
             
         }
     }
-    // Exemplo de submenu para Controle Acadêmico
+    
 public function mostrarMenuControleAcademico(): void
 {
     $disciplinaService = new \Hogwarts\Service\DisciplinaService();
@@ -157,7 +157,7 @@ private function mostrarMenuProfessores(): void
                 $professorService->consultarCronograma();
                 break;
             case '0':
-                return; // volta para menu principal
+                return; 
             default:
                 echo "Opção inválida.\n";
         }

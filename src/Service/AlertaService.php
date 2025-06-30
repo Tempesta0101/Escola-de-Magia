@@ -34,7 +34,6 @@ class AlertaService
         }
     }
 
-    // Enviar alerta (imediato ou agendado)
     public function enviarAlerta(): void
     {
         echo "\n✉️ Enviar novo alerta\n";
@@ -76,7 +75,6 @@ class AlertaService
         echo "✅ Alerta enviado/agendado com sucesso!\n";
     }
 
-    // Listar alertas ativos para um usuário (aluno ou professor)
     public function listarAlertasParaUsuario(string $usuarioId): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -117,7 +115,6 @@ class AlertaService
         }
     }
 
-    // Marcar um alerta como lido para um usuário
     public function marcarComoLido(string $usuarioId): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -127,7 +124,6 @@ class AlertaService
             return;
         }
 
-        // Filtra alertas visíveis para o usuário
         $alertasVisiveis = [];
         foreach ($dados['alertas'] as $key => $alerta) {
             if (
@@ -169,16 +165,15 @@ class AlertaService
         }
     }
 
-    // Função auxiliar para verificar se o usuário pertence a alguma casa dos destinatários
     private function usuarioPertenceCasa(string $usuarioId, array $destinatarios, array $dados): bool
     {
-        // Busca casa do usuário nos alunos
+        
         foreach ($dados['alunos'] as $aluno) {
             if ($aluno['id'] === $usuarioId && isset($aluno['casa']) && in_array($aluno['casa'], $destinatarios)) {
                 return true;
             }
         }
-        // Busca casa do usuário nos professores
+        
         foreach ($dados['professores'] as $professor) {
             if ($professor['id'] === $usuarioId && isset($professor['casa']) && in_array($professor['casa'], $destinatarios)) {
                 return true;

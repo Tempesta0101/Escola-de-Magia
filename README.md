@@ -1,97 +1,85 @@
-# 🐘 PHP POO Skeleton
+Sistema Integrado de Gestão Escolar de Hogwarts
+Bem-vindo ao Sistema Integrado de Gestão Escolar de Hogwarts!
+Este sistema foi desenvolvido para automatizar e facilitar o gerenciamento escolar do mundo mágico, incluindo alunos, professores, casas, torneios, controle acadêmico e sistema de alertas.
 
-[![PHP Version](https://img.shields.io/badge/php-8.1%2B-blue)](https://www.php.net/)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Composer](https://img.shields.io/badge/Autoload-PSR--4-orange)](https://getcomposer.org/doc/04-schema.md#autoload)
+Funcionalidades
+1. Convite e Gerenciamento de Alunos
+Cadastro completo com dados pessoais e origem mágica.
 
----
+Seleção de casa.
 
-## 🇧🇷 Português
+Visualização e gerenciamento dos alunos cadastrados.
 
-Projeto base em PHP 8+ para uso em atividades da disciplina de **POO — Programação Orientada a Objetos**.  
-Ideal para estudantes dos cursos de **Análise e Desenvolvimento de Sistemas**, **Ciência da Computação** e **Engenharia de Software**.  
-Utiliza Composer e Autoload PSR-4 para ensinar boas práticas de organização e estruturação de código orientado a objetos.
+2. Gerenciamento de Casas
+Seleção e associação dos alunos às quatro casas: Grifinória, Sonserina, Corvinal e Lufa-Lufa.
 
-### ✅ Estrutura
-```
+3. Gerenciamento de Professores e Funcionários
+Cadastro de professores.
+
+Associação a disciplinas e turmas.
+
+Consulta de cronograma de aulas.
+
+4. Controle Acadêmico e Disciplinar
+Cadastro e gerenciamento de disciplinas.
+
+Registro e consulta de notas dos alunos.
+
+Aplicação de penalidades e bônus de pontos para as casas.
+
+5. Torneios Intercasas
+Criação e gerenciamento de torneios mágicos.
+
+Inscrição de alunos.
+
+Registro de desempenho e pontuação.
+
+Exibição de rankings em tempo real.
+
+6. Sistema de Alertas e Comunicação
+Envio de comunicados imediatos ou agendados.
+
+Notificações para alunos, professores e administração.
+
+Marcação de alertas como lidos.
+
+Tecnologias Utilizadas
+PHP 8+ com Programação Orientada a Objetos (POO)
+
+Organização de código seguindo padrão PSR-4
+
+Armazenamento dos dados em arquivo JSON para fácil persistência
+
+Interface de linha de comando (CLI) para interação rápida e leve
+
+Estrutura do Projeto
+bash
+Copiar
+Editar
 php-poo-skeleton/
-├── composer.json
-├── .gitignore
-├── README.md
 ├── src/
-│   └── Model/
-│       └── Example.php
-└── app.php
-```
+│   ├── Controller/         # Controladores que gerenciam menus e fluxo
+│   ├── Service/            # Serviços com lógica de negócio (alunos, professores, torneios, etc)
+├── data/
+│   └── database.json       # Banco de dados JSON
+├── app.php                 # Arquivo principal para iniciar o sistema
+├── composer.json           # Autoload PSR-4 e dependências
+└── README.md               # Documentação do projeto
+Como Executar
+Clonar o repositório
+[git clone ](https://github.com/Tempesta0101/Escola-de-Magia.git)
 
-### 🚀 Como Usar
+Entrar na pasta do projeto
+cd hogwarts-gestao-escolar
 
-1. Clone o projeto:
-
-```
-git clone https://github.com/angelomesquita/php-poo-skeleton.git
-cd php-poo-skeleton
-```
-2. Instalação
-```
-composer install
-composer dump-autoload
-```
-
-3. Execute o arquivo `app.php`
-```
+Executar o sistema via CLI
 php app.php
-```
-4. Você verá:
-```
-Hi, OOP World in PHP!
-```
 
-## Licença
+Navegue pelos menus e gerencie Hogwarts com facilidade!
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Próximos Passos:
+Implementar interface web para maior usabilidade
 
+Adicionar autenticação e controle de acesso
 
-## 🇺🇸 English
-
-This is a PHP 8+ skeleton project designed for Object-Oriented Programming (OOP) classes.
-It serves as a base for practical exercises in Systems Analysis and Development, Computer Science, and Software Engineering courses.
-Composer and PSR-4 Autoload are used to teach best practices in modern PHP application development.
-
-### ✅ Structure
-```
-php-poo-skeleton/
-├── composer.json
-├── .gitignore
-├── README.md
-├── src/
-│   └── Model/
-│       └── Example.php
-└── app.php
-```
-
-### 🚀 How to use
-
-1. Clone the project:
-
-```
-git clone https://github.com/angelomesquita/php-poo-skeleton.git
-cd php-poo-skeleton
-```
-2. Install Composer autoloader
-```
-composer install
-composer dump-autoload
-```
-
-3. Run the file `app.php`
-```
-php app.php
-```
-4. You will see:
-```
-Hi, OOP World in PHP!
-```
-## License
-
-This project is licensed under the MIT License—see the [LICENSE](LICENSE) file for details.
+Melhorar sistema de notificações com envio por email ou push

@@ -66,7 +66,6 @@ class AlunoService
         echo "\n✅ Aluno convidado com sucesso!\n";
     }
 
-    // Listar alunos
     public function listarAlunos(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -81,7 +80,6 @@ class AlunoService
         }
     }
 
-    // Editar aluno
     public function editarAluno(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -134,7 +132,6 @@ class AlunoService
         echo "\n✅ Aluno atualizado com sucesso!\n";
     }
 
-    // Remover aluno
     public function removerAluno(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -156,7 +153,6 @@ class AlunoService
 
         $nome = $dados['alunos'][$indice]['nome'];
 
-        // Remove o aluno
         array_splice($dados['alunos'], $indice, 1);
 
         file_put_contents($this->caminhoDB, json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));

@@ -37,7 +37,6 @@ class CasaService
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
 
-        // Filtra alunos que ainda não têm casa
         $alunosSemCasa = array_filter($dados['alunos'], fn($a) => empty($a['casa']));
 
         if (empty($alunosSemCasa)) {
@@ -63,7 +62,6 @@ class CasaService
 
         echo "\nVamos começar a seleção de casa para: {$aluno['nome']}.\n";
 
-        // Perguntas e palavras-chave para cada casa
         $perguntas = [
             [
                 'pergunta' => "1) Qual dessas qualidades você mais valoriza? (Coragem, Ambição, Inteligência, Lealdade)\n",

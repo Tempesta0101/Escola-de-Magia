@@ -11,7 +11,6 @@ class DisciplinaService
         $this->caminhoDB = __DIR__ . '/../../../data/database.json';
     }
 
-    // Registrar nota de um aluno em uma disciplina
     public function registrarNota(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -27,7 +26,6 @@ class DisciplinaService
 
         echo "\n📚 Registrar Nota\n";
 
-        // Listar disciplinas
         foreach ($dados['disciplinas'] as $index => $disciplina) {
             echo ($index + 1) . ". " . $disciplina['nome'] . "\n";
         }
@@ -40,7 +38,6 @@ class DisciplinaService
         }
         $disciplina = &$dados['disciplinas'][$disciplinaIndex];
 
-        // Listar alunos
         foreach ($dados['alunos'] as $index => $aluno) {
             echo ($index + 1) . ". " . $aluno['nome'] . " (Casa: " . ($aluno['casa'] ?? "Sem casa") . ")\n";
         }
@@ -80,7 +77,6 @@ class DisciplinaService
         echo "✅ Nota registrada com sucesso para {$aluno['nome']} na disciplina {$disciplina['nome']}.\n";
     }
 
-    // Consultar boletim de um aluno
     public function consultarBoletim(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -130,7 +126,6 @@ class DisciplinaService
         }
     }
 
-    // Aplicar penalidade ou bônus de pontos para a casa
     public function aplicarPenalidadeBonus(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -139,7 +134,6 @@ class DisciplinaService
 
         $casas = ['Grifinória', 'Sonserina', 'Corvinal', 'Lufa-Lufa'];
 
-        // Mostrar casas
         foreach ($casas as $index => $casa) {
             echo ($index + 1) . ". " . $casa . "\n";
         }
@@ -156,7 +150,6 @@ class DisciplinaService
         echo "Informe pontos (positivos para bônus, negativos para penalidade): ";
         $pontos = intval(trim(fgets(STDIN)));
 
-        // Inicializa pontuação das casas se não existir
         if (!isset($dados['pontuacao_casas'])) {
             $dados['pontuacao_casas'] = [
                 'Grifinória' => 0,

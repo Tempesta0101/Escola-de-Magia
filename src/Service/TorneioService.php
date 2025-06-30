@@ -11,7 +11,6 @@ class TorneioService
         $this->caminhoDB = __DIR__ . '/../../../data/database.json';
     }
 
-    // Cria um novo torneio
     public function criarTorneio(): void
     {
         echo "\n🏆 Criar Novo Torneio\n";
@@ -49,7 +48,6 @@ class TorneioService
         echo "✅ Torneio '{$nome}' criado com sucesso!\n";
     }
 
-    // Inscrever aluno em torneio
     public function inscreverAluno(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -66,7 +64,6 @@ class TorneioService
 
         echo "\n🏆 Inscrição de Aluno em Torneio\n";
 
-        // Listar torneios
         echo "Torneios disponíveis:\n";
         foreach ($dados['torneios'] as $index => $torneio) {
             echo ($index + 1) . ". " . $torneio['nome'] . " (Data: " . $torneio['data'] . ")\n";
@@ -82,7 +79,6 @@ class TorneioService
 
         $torneio = &$dados['torneios'][$torneioEscolhido];
 
-        // Listar alunos não inscritos no torneio
         $alunosNaoInscritos = array_filter($dados['alunos'], function ($aluno) use ($torneio) {
             return !in_array($aluno['id'], $torneio['inscritos']);
         });
@@ -106,7 +102,6 @@ class TorneioService
             return;
         }
 
-        // Como keys de $alunosNaoInscritos podem estar "desalinhadas", precisamos pegar o aluno correto
         $alunoKeys = array_keys($alunosNaoInscritos);
         $alunoId = $alunosNaoInscritos[$alunoKeys[$alunoEscolhido]]['id'];
 
@@ -117,7 +112,6 @@ class TorneioService
         echo "✅ Aluno inscrito com sucesso no torneio '{$torneio['nome']}'!\n";
     }
 
-    // Registrar desempenho do aluno no torneio
     public function registrarDesempenho(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -129,7 +123,6 @@ class TorneioService
 
         echo "\n🏆 Registrar Desempenho\n";
 
-        // Listar torneios
         foreach ($dados['torneios'] as $index => $torneio) {
             echo ($index + 1) . ". " . $torneio['nome'] . "\n";
         }
@@ -148,7 +141,6 @@ class TorneioService
             return;
         }
 
-        // Mostrar alunos inscritos
         echo "Alunos inscritos:\n";
         $alunosInscritos = [];
         foreach ($torneio['inscritos'] as $idx => $alunoId) {
@@ -172,13 +164,11 @@ class TorneioService
         echo "Digite a pontuação obtida pelo aluno: ";
         $pontuacao = intval(trim(fgets(STDIN)));
 
-        // Registrar desempenho
         $torneio['desempenhos'][] = [
             'aluno_id' => $aluno['id'],
             'pontuacao' => $pontuacao,
         ];
 
-        // Atualizar pontuação da casa
         $casa = $aluno['casa'] ?? null;
         if ($casa && isset($torneio['pontuacao_casas'][$casa])) {
             $torneio['pontuacao_casas'][$casa] += $pontuacao;
@@ -189,7 +179,6 @@ class TorneioService
         echo "✅ Desempenho registrado para o aluno {$aluno['nome']}!\n";
     }
 
-    // Mostrar ranking das casas no torneio
     public function mostrarRanking(): void
     {
         $dados = json_decode(file_get_contents($this->caminhoDB), true);
@@ -213,7 +202,6 @@ class TorneioService
         }
     }
 
-    // Método auxiliar para buscar aluno por id
     private function buscarAlunoPorId(array $alunos, string $id): ?array
     {
         foreach ($alunos as $aluno) {

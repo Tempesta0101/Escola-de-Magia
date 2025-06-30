@@ -1,10 +1,8 @@
 <?php
 
-declare(strict_types=1);
+require 'vendor/autoload.php';
 
-require_once __DIR__ . '/vendor/autoload.php';
+use Hogwarts\Controller\MenuController;
 
-use App\Model\Example;
-
-$test = new Example();
-echo $test->sayHello();
+$menu = new MenuController();
+$menu->mostrarMenuPrincipal();

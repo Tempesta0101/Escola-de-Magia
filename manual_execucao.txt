@@ -1,0 +1,17 @@
+MANUAL DE EXECUÇÃO - SISTEMA HOGWARTS
+
+1. Requisitos:
+   - PHP 8 ou superior
+   - Composer instalado
+
+2. Instalação:
+   - Abra o terminal na pasta do projeto
+   - Execute: composer dump-autoload
+
+3. Execução:
+   - No terminal, digite: php app.php
+   - Siga o menu interativo
+
+4. Estrutura:
+   - src/: Código-fonte modular (Controller, Model, Service, Utils)
+   - data/: Simulação de banco de dados JSON

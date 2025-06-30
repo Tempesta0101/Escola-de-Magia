@@ -67,39 +67,40 @@ class MenuController
     {
         $torneioService = new TorneioService();
 
-        while (true) {
-            echo "\n🏆 Menu de Torneios\n";
-            echo "1. Criar novo torneio\n";
-            echo "2. Inscrever aluno em torneio\n";
-            echo "3. Registrar desempenho\n";
-            echo "4. Mostrar ranking das casas\n";
-            echo "0. Voltar ao menu principal\n";
-            echo "Escolha uma opção: ";
+while (true) {
+    echo "\n🎯 Menu de Torneios\n";
+    echo "1. Criar novo torneio\n";
+    echo "2. Inscrever aluno em torneio\n";
+    echo "3. Registrar desempenho\n";
+    echo "4. Mostrar ranking das casas\n";
+    echo "5. Excluir torneio\n";
+    echo "0. Voltar ao menu principal\n";
+    echo "Escolha uma opção: ";
 
-            $opcao = intval(trim(fgets(STDIN)));
+    $opcao = trim(fgets(STDIN));
 
-            switch ($opcao) {
-                case 1:
-                    $torneioService->criarTorneio();
-                    break;
-
-                case 2:
-                    $torneioService->inscreverAluno();
-                    break;
-
-                case 3:
-                    $torneioService->registrarDesempenho();
-                    break;
-
-                case 4:
-                    $torneioService->mostrarRanking();
-                    break;
-
-                case 0:
-                    return;
-
-                default:
-                    echo "Opção inválida. Tente novamente.\n";
+    switch ($opcao) {
+        case '1':
+            $torneioService->criarTorneio();
+            break;
+        case '2':
+            $torneioService->inscreverAluno();
+            break;
+        case '3':
+            $torneioService->registrarDesempenho();
+            break;
+        case '4':
+            $torneioService->mostrarRanking();
+            break;
+        case '5':
+            $torneioService->excluirTorneio();
+            break;
+        case '0':
+            echo "Voltando ao menu principal...\n";
+            exit; 
+        default:
+            echo "Opção inválida. Tente novamente.\n";
+            break;
             }
             
         }

@@ -31,9 +31,9 @@ class TorneioService
             'nome' => $nome,
             'data' => $data,
             'local' => $local,
-            'inscritos' => [],  // lista de alunos inscritos (ids)
-            'desempenhos' => [], // registros dos desempenhos
-            'pontuacao_casas' => [  // pontuação inicial zerada
+            'inscritos' => [],  
+            'desempenhos' => [], 
+            'pontuacao_casas' => [  
                 'Grifinória' => 0,
                 'Sonserina' => 0,
                 'Corvinal' => 0,
@@ -65,8 +65,10 @@ class TorneioService
         echo "\n🏆 Inscrição de Aluno em Torneio\n";
 
         echo "Torneios disponíveis:\n";
+
         foreach ($dados['torneios'] as $index => $torneio) {
-            echo ($index + 1) . ". " . $torneio['nome'] . " (Data: " . $torneio['data'] . ")\n";
+            $data = isset($torneio['data']) && !empty($torneio['data']) ? $torneio['data'] : 'Data não informada';
+            echo ($index + 1) . ". " . $torneio['nome'] . " (Data: $data)\n";
         }
 
         echo "Escolha o número do torneio: ";
@@ -110,6 +112,42 @@ class TorneioService
         file_put_contents($this->caminhoDB, json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
         echo "✅ Aluno inscrito com sucesso no torneio '{$torneio['nome']}'!\n";
+    }
+
+    // Novo método para excluir torneio
+    public function excluirTorneio(): void
+    {
+        $dados = json_decode(file_get_contents($this->caminhoDB), true);
+
+        if (empty($dados['torneios'])) {
+            echo "\n❌ Nenhum torneio cadastrado.\n";
+            return;
+        }
+
+        echo "\n🏆 Excluir Torneio\n";
+
+        foreach ($dados['torneios'] as $index => $torneio) {
+            $data = isset($torneio['data']) && !empty($torneio['data']) ? $torneio['data'] : 'Data não informada';
+            echo ($index + 1) . ". " . $torneio['nome'] . " (Data: $data)\n";
+        }
+
+        echo "Escolha o número do torneio para excluir: ";
+        $torneioEscolhido = intval(trim(fgets(STDIN))) - 1;
+
+        if (!isset($dados['torneios'][$torneioEscolhido])) {
+            echo "Opção inválida.\n";
+            return;
+        }
+
+        $nome = $dados['torneios'][$torneioEscolhido]['nome'];
+
+        // Remove o torneio selecionado
+        array_splice($dados['torneios'], $torneioEscolhido, 1);
+
+        // Salva os dados atualizados
+        file_put_contents($this->caminhoDB, json_encode($dados, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+        echo "✅ Torneio '{$nome}' excluído com sucesso!\n";
     }
 
     public function registrarDesempenho(): void

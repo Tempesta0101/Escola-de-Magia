@@ -45,19 +45,21 @@ class CasaService
         }
 
         echo "\n🎩 Alunos disponíveis para seleção:\n";
-        foreach ($alunosSemCasa as $index => $aluno) {
-            echo ($index + 1) . ". " . $aluno['nome'] . "\n";
+
+        $alunoKeys = array_keys($alunosSemCasa);
+        foreach ($alunoKeys as $i => $key) {
+            echo ($i + 1) . ". " . $alunosSemCasa[$key]['nome'] . "\n";
         }
 
         echo "Escolha o número do aluno para seleção: ";
         $escolha = intval(trim(fgets(STDIN)));
 
-        if (!isset($alunosSemCasa[array_keys($alunosSemCasa)[$escolha -1]])) {
+        if (!isset($alunoKeys[$escolha - 1])) {
             echo "Opção inválida.\n";
             return;
         }
 
-        $alunoSelecionadoKey = array_keys($alunosSemCasa)[$escolha -1];
+        $alunoSelecionadoKey = $alunoKeys[$escolha - 1];
         $aluno = $dados['alunos'][$alunoSelecionadoKey];
 
         echo "\nVamos começar a seleção de casa para: {$aluno['nome']}.\n";

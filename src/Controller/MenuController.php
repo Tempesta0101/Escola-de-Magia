@@ -50,8 +50,9 @@ class MenuController
                         $this->mostrarMenuTorneios();
                     break;
                 case 7:
-                        $this->mostrarMenuAlertas();
+                        $this->mostrarMenuAlertas('usuario_teste');
                     break;
+
 
                 case 0:
                     echo "Até logo!\n";
